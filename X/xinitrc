@@ -1,0 +1,18 @@
+# Author:      Stefan Eng
+# License:     GPL v3
+# File:        xinitrc
+# Description:  
+#    Read by xinit and startx 
+
+# Activates our Xresource file
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+# Activates keymap
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
+case $1 in
+	# Uncomment for whatever DE/WM in use
+	# gnome) exec gnome-session;;
+	# kde) exec startkde;;
+	*) exec xmonad;;
+esac

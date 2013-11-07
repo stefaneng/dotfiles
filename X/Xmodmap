@@ -1,0 +1,10 @@
+! Author  : Stefan Eng
+! License : GPL v3
+! File:     Xmodmap
+! Description:
+!     Defines keymaps for xmodmap command
+
+! Remove caps lock and make it an extra control
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
