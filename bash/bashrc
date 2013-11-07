@@ -19,6 +19,9 @@
 # Source functions
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
+# Source bash completion, not sure why it is not working
+[[ -f /etc/profile.d/bash-completion.sh ]] && . /etc/profile.d/bash-completion.sh
+
 # Remove duplicates from history
 export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
 

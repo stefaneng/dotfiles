@@ -16,9 +16,10 @@ while [ -h "$SOURCE" ]; do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-# Manually source the git_branch function
-# TODO: Automate this for all *.sh files 
-[[ -f $DIR/git_branch.sh ]] && . $DIR/git_branch.sh
+# Source every .sh file
+# [[ -f $DIR/git_branch.sh ]] && . $DIR/git_branch.sh
+source $DIR/*.sh
 
+# Clear our variables
 unset DIR
 unset SOURCE
