@@ -6,7 +6,7 @@
 !     Generally it starts with the program name it is modifying.
 
 ! Font
-URxvt*font: xft:Inconsolata:size=11
+URxvt*font: xft:Inconsolata:size=12
 Xft*dpi: 96
 Xft*antialias: True
 Xft*hinting: Full
