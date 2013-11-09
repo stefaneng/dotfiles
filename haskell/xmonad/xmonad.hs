@@ -7,20 +7,50 @@
 import XMonad
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Run
-import XMonad.Util.Cursor
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
+import XMonad.Util.Cursor (setDefaultCursor, xC_left_ptr)
 
 main = do
-  handle <- spawnPipe "xmobar"
+  handle <- spawnPipe "xmobar &>> ~/XMOBARLOG"
   xmonad $ defaultConfig
-             { modMask     = mod4Mask -- Use windows key for mod
-             , terminal    = "urxvt"
-             , manageHook  = manageDocks <+> manageHook defaultConfig
-             , layoutHook  = avoidStruts  $ layoutHook defaultConfig 
-             , startupHook = setDefaultCursor xC_left_ptr
-             , logHook     = dynamicLogWithPP xmobarPP
-                             { ppOutput = hPutStrLn handle
-                             , ppTitle = xmobarColor "green" "" . shorten 25
-                             }
+             { modMask     = myModMask
+             , terminal    = myTerminal
+             , manageHook  = myManageHook
+             , layoutHook  = myLayoutHook
+             , startupHook = myStartupHook
+             , logHook     = dynamicLogWithPP xmobarPP 
+                             { ppOutput = hPutStrLn handle }
              }
 
+
+-- the mod modifier
+-- set to windows key
+myModMask :: KeyMask
+myModMask = mod4Mask
+
+-- use rxvt-unicode as terminal
+-- config file in dotfiles/X/Xresources
+myTerminal :: String
+myTerminal = "urxvt"
+
+-- not quite sure exactly what the options are for manageHook
+myManageHook :: ManageHook
+myManageHook = manageDocks <+> manageHook defaultConfig
+
+-- same goes for the layoutHook
+myLayoutHook = avoidStruts $ layoutHook defaultConfig
+
+-- this should probably go into an X config file and not here
+setMyCursor :: X ()
+setMyCursor = setDefaultCursor xC_left_ptr
+
+-- startup hook runs when xmonad starts
+myStartupHook :: X ()
+myStartupHook = setMyCursor
+
+-- dynamic logging for xmobar
+-- pass a handle to it
+--myLogHook :: X ()
+--myLogHook handle = dynamicLogWithPP xmobarPP { ppOutput = hPutStrLn handle }
+
+                            
