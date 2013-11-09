@@ -4,25 +4,21 @@
 -- Description:
 --     xmobar configuration file
 
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
+Config { font = "xft:Inconsolata-10"
+       , bgColor = "#000000"
+       , fgColor = "#BFBFBF"
        , position = Top
+       , border = NoBorder
+       , borderColor = "#BFBFBF"
+       , hideOnStart = False
        , lowerOnStart = True
        , persistent = False
-       , hideOnStart = False
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-    		    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Date "%a %b %_d %Y * %H:%M:%S" "theDate" 10
+                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
+       , template = "%StdinReader% }{ <fc=#00FF00>%uname%</fc> * <fc=#FF0000>%theDate%</fc>"
        }

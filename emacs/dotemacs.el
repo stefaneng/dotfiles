@@ -46,6 +46,8 @@
 ;; Use this monokai theme from the repos
 ; (load-theme 'monokai t)
 
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
 ;; Package management stuff
 
 ;; Declare what packages we want installed
