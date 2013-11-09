@@ -19,6 +19,9 @@
 # Source functions
 [[ -f ~/.bash_functions ]] && . ~/.bash_functions
 
+# Source the aliases
+[[ -f ~/.bashrc ]] && . ~/.bash_aliases
+
 # Source bash completion, not sure why it is not working
 [[ -f /etc/profile.d/bash-completion.sh ]] && . /etc/profile.d/bash-completion.sh
 
@@ -31,3 +34,8 @@ set -o noclobber
 # Prompt, use double quotes to expand colors and \[ \] escapes them
 # See colors in bash/colors
 PS1="\[$BGreen\]\u@\h\[$BBlue\] \[$BRed\]\$(git_branch) \[$BBlue\]\w \$ \[$Color_Off\]"
+
+# Add things to the path here
+##
+# Add cabal to the path
+export PATH=~/.cabal/bin:$PATH

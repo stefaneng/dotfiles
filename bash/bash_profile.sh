@@ -7,6 +7,3 @@
 
 # Source our bashrc file
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-
-# Source the aliases
-[[ -f ~/.bashrc ]] && . ~/.bash_aliases
