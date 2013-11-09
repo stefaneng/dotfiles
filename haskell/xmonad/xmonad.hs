@@ -11,7 +11,7 @@ import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import XMonad.Util.Cursor (setDefaultCursor, xC_left_ptr)
 
 main = do
-  handle <- spawnPipe "xmobar &>> ~/XMOBARLOG"
+  handle <- spawnPipe "xmobar"
   xmonad $ defaultConfig
              { modMask     = myModMask
              , terminal    = myTerminal
@@ -21,7 +21,6 @@ main = do
              , logHook     = dynamicLogWithPP xmobarPP 
                              { ppOutput = hPutStrLn handle }
              }
-
 
 -- the mod modifier
 -- set to windows key
@@ -52,5 +51,3 @@ myStartupHook = setMyCursor
 -- pass a handle to it
 --myLogHook :: X ()
 --myLogHook handle = dynamicLogWithPP xmobarPP { ppOutput = hPutStrLn handle }
-
-                            
