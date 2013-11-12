@@ -18,6 +18,9 @@
 
 ;;; Code:
 
+;; Add my packages to load path
+(add-to-list 'load-path "/home/stefan/dotfiles/emacs/packages")
+
 ;; Hide startup screen
 (setq inhibit-startup-message t)
 
@@ -40,25 +43,26 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; Line number mode
+(global-linum-mode 1)
+
 ;; Tango-dark theme for now
 (load-theme 'tango-dark)
-
-;; Use this monokai theme from the repos
-; (load-theme 'monokai t)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 ;; Package management stuff
-
-;; Declare what packages we want installed
 (require 'package)
-
 ;; Marmalade package archive
 ;; http://marmalade-repo.org/
-
 (add-to-list 'package-archives 
-    '("marmalade" .
-          "http://marmalade-repo.org/packages/"))
+	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; Add my package folder
+(add-to-list 'package-archives
+	     '("local" . "/home/stefan/dotfiles/emacs/packages/"))
+
 (package-initialize)
+
+;(package-refresh-contents)
 
 ;;; dotemacs.el ends here
