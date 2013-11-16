@@ -19,7 +19,20 @@
 ;;; Code:
 
 ;; Add my packages to load path
-(add-to-list 'load-path "/home/stefan/dotfiles/emacs/packages")
+;(add-to-list 'load-path "/home/stefan/dotfiles/emacs/packages")
+
+;; TODO?
+;; - js3.el mode https://github.com/thomblake/js3-mode
+;; - jshint mode - slightly patched version of original jshint which uses node and loads jshint config from home -   https://github.com/jeffbski/jshint-mode
+;; - json-pretty-print - https://github.com/thorstadt/json-pretty-print.el
+;; - ido - great for quick access to buffers and files - http://ubuntu2.wordpress.com/2008/01/02/emacs-tip-1-ido-mode/
+;; - markdown-mode - http://emacswiki.org/emacs/MarkdownMode
+;; - uniquify - provides nice unique short buffer names - http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
+;; - anything mode - http://www.emacswiki.org/Anything
+
+;; js2-mode
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
@@ -53,15 +66,16 @@
 
 ;; Package management stuff
 (require 'package)
-;; Marmalade package archive
-;; http://marmalade-repo.org/
-(add-to-list 'package-archives 
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;(add-to-list 'package-archives 
+;	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;; Add my package folder
 (add-to-list 'package-archives
-	     '("local" . "/home/stefan/dotfiles/emacs/packages/"))
+	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
 
 (package-initialize)
+
 
 ;(package-refresh-contents)
 

@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Author:      Stefan Eng
 # License:     GPL v3
