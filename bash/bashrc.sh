@@ -33,7 +33,7 @@ set -o noclobber
 
 # Prompt, use double quotes to expand colors and \[ \] escapes them
 # See colors in bash/colors
-PS1="\[$BGreen\]\u@\h\[$BBlue\] \[$BRed\]\$(git_branch) \[$BBlue\]\w \$ \[$Color_Off\]"
+PS1="\[$BGreen\]\u@\h\[$BBlue\] \[$BBlue\]\w \[$BRed\]\$(git_branch) \[$Green\]\$ \[$Color_Off\]"
 
 # Add things to the path here
 ##
