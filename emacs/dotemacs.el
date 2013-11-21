@@ -56,10 +56,10 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-;; Add F11 for changing between perl and prolog
-;(eval-after-load 'perl
-(define-key perl-mode-map 
-  (kbd "<f11>") 'prolog-mode)
+;; Add F11 for changing from perl to prolog
+(add-hook 'perl-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "<f11>") 'prolog-mode)))
 
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
