@@ -56,13 +56,28 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; Add F11 for changing between perl and prolog
+;(eval-after-load 'perl
+(define-key perl-mode-map 
+  (kbd "<f11>") 'prolog-mode)
+
+(define-key prolog-mode-map
+  (kbd "<f11>") 'perl-mode)
+
+;; Tabs are evil
+(setq indent-tabs-mode nil)
+
 ;; Line number mode
 (global-linum-mode 1)
 
 ;; Tango-dark theme for now
 (load-theme 'tango-dark)
 
+;; Haskell mode
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
+;; C Stuff
+(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 ;; Package management stuff
 (require 'package)
