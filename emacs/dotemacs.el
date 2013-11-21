@@ -61,9 +61,6 @@
 (define-key perl-mode-map 
   (kbd "<f11>") 'prolog-mode)
 
-(define-key prolog-mode-map
-  (kbd "<f11>") 'perl-mode)
-
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
 
