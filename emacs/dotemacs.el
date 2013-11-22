@@ -30,9 +30,30 @@
 ;; - uniquify - provides nice unique short buffer names - http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
 ;; - anything mode - http://www.emacswiki.org/Anything
 
+
+;; Package management stuff
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;(add-to-list 'package-archives 
+;	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; Add my package folder
+(add-to-list 'package-archives
+	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
+
+(package-initialize)
+
+;; Start eshell on startup
+(add-hook 'emacs-startup-hook #'(lambda ()
+                                  (let ((default-directory (getenv "HOME")))
+                                    (command-execute 'eshell)
+                                    (bury-buffer))))
+
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+;(add-to-list 'ac-js2-external-libraries "path/to/lib/library.js")
+;(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
@@ -61,6 +82,22 @@
 	  (lambda ()
 	    (local-set-key (kbd "<f11>") 'prolog-mode)))
 
+;; Markdown mode
+;(autoload 'markdown-mode "markdown-mode"
+;   "Major mode for editing Markdown files" t)
+(require 'markdown-mode)
+;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;; Github style markdown for readme's
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;; Change to whatever markdown parser you like
+(setq markdown-command "markdown_py")
+
+
+;; Helm stuff
+(helm-mode 1)
+
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
 
@@ -75,18 +112,6 @@
 
 ;; C Stuff
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-
-;; Package management stuff
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(add-to-list 'package-archives 
-;	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; Add my package folder
-(add-to-list 'package-archives
-	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
-
-(package-initialize)
 
 
 ;(package-refresh-contents)
