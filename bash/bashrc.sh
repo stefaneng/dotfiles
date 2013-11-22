@@ -39,3 +39,6 @@ PS1="\[$BGreen\]\u@\h\[$BBlue\] \[$BBlue\]\w \[$BRed\]\$(git_branch) \[$Green\]\
 ##
 # Add cabal to the path
 export PATH=~/.cabal/bin:$PATH
+
+# Add Ruby Gems to path
+export PATH=~/.gem/ruby/2.0.0/bin:$PATH
