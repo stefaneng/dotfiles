@@ -33,6 +33,10 @@
 
 ;; Package management stuff
 (require 'package)
+
+;; My functions
+(load "~/dotfiles/emacs/packages/stefan.el")
+
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 ;(add-to-list 'package-archives 
@@ -49,11 +53,25 @@
                                     (command-execute 'eshell)
                                     (bury-buffer))))
 
+;; Open up the dotfiles on startup since I always add things to it
+(add-hook 'emacs-startup-hook
+	  #'(lambda ()
+	      (find-file "~/dotfiles/emacs/dotemacs.el")
+	      (bury-buffer)))
+	  
 ;; js2-mode
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-;(add-to-list 'ac-js2-external-libraries "path/to/lib/library.js")
-;(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+(ensure-installed-package 'js2-mode
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (add-hook 'js2-mode-hook 'ac-js2-mode)
+  ;;(add-to-list 'ac-js2-external-libraries "path/to/lib/library.js")
+  ;;(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+)
+
+;; web-mode
+(ensure-installed-package 'web-mode
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+)
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
@@ -83,20 +101,24 @@
 	    (local-set-key (kbd "<f11>") 'prolog-mode)))
 
 ;; Markdown mode
-;(autoload 'markdown-mode "markdown-mode"
-;   "Major mode for editing Markdown files" t)
-(require 'markdown-mode)
-;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-;; Github style markdown for readme's
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-;; Change to whatever markdown parser you like
-(setq markdown-command "markdown_py")
+(ensure-installed-package 'markdown-mode
+  ;;(autoload 'markdown-mode "markdown-mode"
+  ;;   "Major mode for editing Markdown files" t)
+  (require 'markdown-mode)
+  ;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+  ;; Github style markdown for readme's
+  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+  ;; Change to whatever markdown parser you like
+  (setq markdown-command "markdown_py")
+)
 
 
 ;; Helm stuff
-(helm-mode 1)
+(ensure-installed-package 'helm
+    (helm-mode 1)
+)
 
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
@@ -108,7 +130,9 @@
 (load-theme 'tango-dark)
 
 ;; Haskell mode
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(ensure-installed-package 'haskell-mode
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+)
 
 ;; C Stuff
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
