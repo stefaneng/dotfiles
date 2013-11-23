@@ -114,10 +114,15 @@
   (setq markdown-command "markdown_py")
 )
 
+;; Magit
+(ensure-installed-package 'magit
+  (global-set-key (kbd "C-x g")
+		  'magit-status)
+)			  
 
 ;; Helm stuff
 (ensure-installed-package 'helm
-    (helm-mode 1)
+  (helm-mode 1)
 )
 
 ;; Tabs are evil
