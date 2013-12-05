@@ -46,7 +46,7 @@
   "Gets the man(5) page for the current word when in C mode."
   (interactive) 
   (man 
-   (concat "3" (current-word))))
+   (concat "3 " (current-word))))
 
 (provide 'stefan)
 ;;; stefan.el ends here
