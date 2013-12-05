@@ -35,12 +35,13 @@
 (require 'package)
 
 ;; My functions
-(load "~/dotfiles/emacs/packages/stefan.el")
+(add-to-list 'load-path "~/dotfiles/emacs/packages")
+(require 'stefan)
 
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;(add-to-list 'package-archives 
-;	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;; Add my package folder
 (add-to-list 'package-archives
 	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
@@ -49,16 +50,16 @@
 
 ;; Start eshell on startup
 (add-hook 'emacs-startup-hook #'(lambda ()
-                                  (let ((default-directory (getenv "HOME")))
-                                    (command-execute 'eshell)
-                                    (bury-buffer))))
+				  (let ((default-directory (getenv "HOME")))
+				    (command-execute 'eshell)
+				    (bury-buffer))))
 
 ;; Open up the dotfiles on startup since I always add things to it
 (add-hook 'emacs-startup-hook
 	  #'(lambda ()
 	      (find-file "~/dotfiles/emacs/dotemacs.el")
 	      (bury-buffer)))
-	  
+
 ;; js2-mode
 (ensure-installed-package 'js2-mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -78,17 +79,17 @@
 
 ;; Inconsolata font
 ;; TODO: Set fallback fonts?
-(set-face-attribute 'default nil :family "Inconsolata" :height 120)
+(set-face-attribute 'default nil :family "Inconsolata" :height 135)
 
 ;; From http://www.emacswiki.org/emacs/BackupDirectory
 (setq
- backup-by-copying t      ; don't clobber symlinks
+ backup-by-copying t             ; don't clobber symlinks
  backup-directory-alist
  '(("." . "~/Backups/emacs"))    ; don't litter my fs tree
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
- version-control t)       ; use versioned backups
+ version-control t)              ; use versioned backups
 
 ;; Remove the scroll bar, menu bar, and tool bar
 (scroll-bar-mode -1)
@@ -99,6 +100,8 @@
 (add-hook 'perl-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "<f11>") 'prolog-mode)))
+;; Don't need idl shit, prolog yoooooooo
+(add-to-list 'auto-mode-alist '("\\.pro\\'" . prolog-mode))
 
 ;; Markdown mode
 (ensure-installed-package 'markdown-mode
@@ -118,11 +121,15 @@
 (ensure-installed-package 'magit
   (global-set-key (kbd "C-x g")
 		  'magit-status)
-)			  
+)
 
 ;; Helm stuff
 (ensure-installed-package 'helm
   (helm-mode 1)
+  (add-hook 'eshell-mode-hook
+	    #'(lambda ()
+		(define-key eshell-mode-map
+        	  (kbd "<tab>") 'helm-esh-pcomplete)))
 )
 
 ;; Tabs are evil
@@ -130,18 +137,30 @@
 
 ;; Line number mode
 (global-linum-mode 1)
+;; Column numbers
+(column-number-mode 1)
 
 ;; Tango-dark theme for now
-(load-theme 'tango-dark)
+;;(load-theme 'tango-dark)
+;; Sublime text like theme
+;(ensure-installed-package 'monokai-theme
+;  (load-theme 'monokai t)
+;)
+(ensure-installed-package 'zenburn-theme
+  (load-theme 'zenburn t)
+)
 
 ;; Haskell mode
 (ensure-installed-package 'haskell-mode
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 )
 
 ;; C Stuff
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
-
+(add-hook 'c-mode-hook
+	  #'(lambda ()
+	      (local-set-key (kbd "<f11>") 'c-man)))
 
 ;(package-refresh-contents)
 
