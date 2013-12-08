@@ -34,6 +34,16 @@
 ;; Package management stuff
 (require 'package)
 
+;; Setup path
+;; From: http://clojure-doc.org/articles/tutorials/emacs.html
+;; Slightly modified
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "echo $PATH")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
+
 ;; My functions
 (add-to-list 'load-path "~/dotfiles/emacs/packages")
 (require 'stefan)

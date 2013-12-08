@@ -42,3 +42,6 @@ export PATH=~/.cabal/bin:$PATH
 
 # Add Ruby Gems to path
 export PATH=~/.gem/ruby/2.0.0/bin:$PATH
+
+# Add ~/bin to path
+export PATH=~/bin:$PATH
