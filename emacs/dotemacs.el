@@ -70,6 +70,11 @@
 	      (find-file "~/dotfiles/emacs/dotemacs.el")
 	      (bury-buffer)))
 
+;; On save, remove whitespace at end of lines
+(add-hook 'before-save-hook
+	  #'(lambda ()
+	      (delete-trailing-whitespace)))
+
 ;; js2-mode
 (ensure-installed-package 'js2-mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
