@@ -59,10 +59,11 @@
 (package-initialize)
 
 ;; Start eshell on startup
-(add-hook 'emacs-startup-hook #'(lambda ()
-				  (let ((default-directory (getenv "HOME")))
-				    (command-execute 'eshell)
-				    (bury-buffer))))
+(add-hook 'emacs-startup-hook
+	  #'(lambda ()
+	      (let ((default-directory (getenv "HOME")))
+		(command-execute 'eshell)
+		(bury-buffer))))
 
 ;; Open up the dotfiles on startup since I always add things to it
 (add-hook 'emacs-startup-hook
@@ -74,6 +75,12 @@
 (add-hook 'before-save-hook
 	  #'(lambda ()
 	      (delete-trailing-whitespace)))
+
+;; Fly chicks? naw flycheck
+(ensure-installed-package 'flycheck
+  (add-hook 'after-init-hook
+	    #'(lambda ()
+		global-flycheck-mode)))
 
 ;; js2-mode
 (ensure-installed-package 'js2-mode
