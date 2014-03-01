@@ -185,15 +185,16 @@
 	      (local-set-key (kbd "<f11>") 'c-man)))
 
 ;; LaTeX
+(ensure-installed-package 'auctex
+  ;; Add binary to path
+  (setenv "PATH"
+	  (concat (getenv "PATH")
+		  ":/usr/local/texlive/2013/bin/x86_64-linux/"))
 
-;; Add binary to path
-(setenv "PATH"
-        (concat (getenv "PATH")
-                ":/usr/local/texlive/2013/bin/x86_64-linux/"))
+  (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 
-(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
-
-(setq TeX-PDF-mode t)
+  (setq TeX-PDF-mode t)
+)
 
 ;(package-refresh-contents)
 
