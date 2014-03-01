@@ -184,6 +184,17 @@
 	  #'(lambda ()
 	      (local-set-key (kbd "<f11>") 'c-man)))
 
+;; LaTeX
+
+;; Add binary to path
+(setenv "PATH"
+        (concat (getenv "PATH")
+                ":/usr/local/texlive/2013/bin/x86_64-linux/"))
+
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+
+(setq TeX-PDF-mode t)
+
 ;(package-refresh-contents)
 
 ;;; dotemacs.el ends here
