@@ -101,7 +101,7 @@
 
 ;; Inconsolata font
 ;; TODO: Set fallback fonts?
-(set-face-attribute 'default nil :family "Inconsolata" :height 135)
+;(set-face-attribute 'default nil :family "Inconsolata" :height 135)
 
 ;; From http://www.emacswiki.org/emacs/BackupDirectory
 (setq
