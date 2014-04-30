@@ -34,16 +34,6 @@
 ;; Package management stuff
 (require 'package)
 
-;; Setup path
-;; From: http://clojure-doc.org/articles/tutorials/emacs.html
-;; Slightly modified
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "echo $PATH")))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-(when window-system (set-exec-path-from-shell-PATH))
-
 ;; My functions
 (add-to-list 'load-path "~/dotfiles/emacs/packages")
 (require 'stefan)
@@ -57,6 +47,12 @@
 	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
 
 (package-initialize)
+(package-refresh-contents)
+
+;; Add the path from the shell
+(ensure-installed-package 'exec-path-from-shell
+  (exec-path-from-shell-initialize)
+)
 
 ;; Start eshell on startup
 (add-hook 'emacs-startup-hook
@@ -186,14 +182,17 @@
 
 ;; LaTeX
 (ensure-installed-package 'auctex
-  ;; Add binary to path
-  (setenv "PATH"
-	  (concat (getenv "PATH")
-		  ":/usr/local/texlive/2013/bin/x86_64-linux/"))
-
   (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 
   (setq TeX-PDF-mode t)
+)
+
+;; OSX Specific changes
+(if (eq system-type 'darwin)
+    (progn
+      (menu-bar-mode)
+      )
+  ;; No else
 )
 
 ;(package-refresh-contents)
