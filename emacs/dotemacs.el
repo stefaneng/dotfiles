@@ -97,7 +97,7 @@
 
 ;; Inconsolata font
 ;; TODO: Set fallback fonts?
-;(set-face-attribute 'default nil :family "Inconsolata" :height 135)
+;(set-face-attribute 'default nil :family "Roboto" :height 140)
 
 ;; From http://www.emacswiki.org/emacs/BackupDirectory
 (setq
@@ -191,6 +191,7 @@
 (if (eq system-type 'darwin)
     (progn
       (menu-bar-mode)
+      (set-face-attribute 'default nil :family "Roboto" :height 140)
       )
   ;; No else
 )
