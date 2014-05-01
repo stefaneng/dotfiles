@@ -152,6 +152,9 @@
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
+;; Linum
+(setq linum-format line-number-to-spaces)
+
 ;; Helm stuff
 (ensure-installed-package 'helm
   (helm-mode 1)
@@ -202,7 +205,7 @@
 (if (eq system-type 'darwin)
     (progn
       (menu-bar-mode)
-      (set-face-attribute 'default nil :family "Roboto" :height 140)
+      (set-face-attribute 'default nil :family "Consolas" :height 155)
       )
   ;; No else
 )
