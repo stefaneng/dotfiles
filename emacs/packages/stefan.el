@@ -36,21 +36,21 @@
 ;;;###autoload
 (defmacro ensure-installed-package (package &rest body)
   "Ensures PACKAGE is installed and then performs body. Place package configurations in BODY"
-  (declare (indent 1))    
-  `(progn 
+  (declare (indent 1))
+  `(progn
      (when (not (package-installed-p ,package))
        (package-install ,package))
      ,@body))
 
 (defun c-man ()
   "Gets the man(5) page for the current word when in C mode."
-  (interactive) 
-  (man 
+  (interactive)
+  (man
    (concat "3 " (current-word))))
+
+(defun line-number-to-spaces (linum)
+  ((length (number-to-string)) + 1)
+  )
 
 (provide 'stefan)
 ;;; stefan.el ends here
-
-
-
-
