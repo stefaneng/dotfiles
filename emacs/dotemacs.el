@@ -141,6 +141,12 @@
 		  'magit-status)
 )
 
+;; Paren stuff
+;; May need to be replaced with paredit?
+(electric-pair-mode 1)
+(show-paren-mode 1)
+(setq show-paren-style 'expression)
+
 ;; Helm stuff
 (ensure-installed-package 'helm
   (helm-mode 1)
