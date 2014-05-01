@@ -153,7 +153,7 @@
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
 
 ;; Linum
-(setq linum-format line-number-to-spaces)
+;(setq linum-format line-number-to-spaces)
 
 ;; Helm stuff
 (ensure-installed-package 'helm
@@ -182,6 +182,11 @@
   (load-theme 'zenburn t)
 )
 
+;; Clojure
+(ensure-installed-package 'cider
+  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (setq nrepl-hide-special-buffers t))
+
 ;; Haskell mode
 (ensure-installed-package 'haskell-mode
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
@@ -200,6 +205,17 @@
 
   (setq TeX-PDF-mode t)
 )
+
+;; No graphical popups... just for yes and no?
+;; From http://superuser.com/a/125571
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent yes-or-no-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent y-or-n-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
 
 ;; OSX Specific changes
 (if (eq system-type 'darwin)
