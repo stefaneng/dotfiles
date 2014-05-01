@@ -147,6 +147,11 @@
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 
+;; Emacs Lisp
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+
 ;; Helm stuff
 (ensure-installed-package 'helm
   (helm-mode 1)
