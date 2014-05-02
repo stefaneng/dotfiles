@@ -187,10 +187,10 @@
 )
 
 ;; Clojure
+(ensure-installed-package 'clojure-mode
+  (add-hook 'clojure-mode-hook 'paredit-mode))
 (ensure-installed-package 'cider
   (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-  (ensure-installed-package 'paredit
-    (add-hook 'cider-mode-hook 'paredit-mode))
   (setq nrepl-hide-special-buffers t))
 
 ;; Haskell mode
