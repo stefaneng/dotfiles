@@ -143,14 +143,18 @@
 
 ;; Paren stuff
 ;; May need to be replaced with paredit?
-(electric-pair-mode 1)
+;(electric-pair-mode 1)
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 
 ;; Emacs Lisp
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+(dolist (hook
+	 '(emacs-lisp-mode-hook
+	   lisp-interaction-mode-hook
+	   lisp-interaction-mode-hook))
+  (add-hook hook #'(lambda ()
+		     (turn-on-eldoc-mode)
+		     (paredit-mode))))
 
 ;; Linum
 ;(setq linum-format line-number-to-spaces)
@@ -185,6 +189,8 @@
 ;; Clojure
 (ensure-installed-package 'cider
   (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  (ensure-installed-package 'paredit
+    (add-hook 'cider-mode-hook 'paredit-mode))
   (setq nrepl-hide-special-buffers t))
 
 ;; Haskell mode
