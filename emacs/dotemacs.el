@@ -78,19 +78,24 @@
 	    #'(lambda ()
 		global-flycheck-mode)))
 
+(ensure-installed-package 'skewer-mode
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode))
+
 ;; js2-mode
 (ensure-installed-package 'js2-mode
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (add-hook 'js2-mode-hook 'ac-js2-mode)
+  ;(add-hook 'js2-mode-hook 'ac-js2-mode)
   ;;(add-to-list 'ac-js2-external-libraries "path/to/lib/library.js")
   ;;(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 )
 
 ;; web-mode
-(ensure-installed-package 'web-mode
-  (require 'web-mode)
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-)
+;; (ensure-installed-package 'web-mode
+;;   (require 'web-mode)
+;;   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; )
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
@@ -154,7 +159,7 @@
 	   lisp-interaction-mode-hook))
   (add-hook hook #'(lambda ()
 		     (turn-on-eldoc-mode)
-		     (paredit-mode))))
+		     (enable-paredit-mode))))
 
 ;; Linum
 ;(setq linum-format line-number-to-spaces)
@@ -188,9 +193,20 @@
 
 ;; Clojure
 (ensure-installed-package 'clojure-mode
-  (add-hook 'clojure-mode-hook 'paredit-mode))
+  ;; Regular clojure stuff
+  (add-hook 'clojure-mode-hook
+	    #'(lambda ()
+		(enable-paredit-mode))))
 (ensure-installed-package 'cider
-  (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+  ;; REPL Mode hooks
+  (add-hook 'cider-repl-mode-hook
+	    #'(lambda ()
+		(paredit-mode)))
+  ;; Cider mode hooks
+  (add-hook 'cider-mode-hook
+	    #'(lambda ()
+		(cider-turn-on-eldoc-mode)
+		(enable-paredit-mode)))
   (setq nrepl-hide-special-buffers t))
 
 ;; Haskell mode
