@@ -146,6 +146,9 @@
 		  'magit-status)
 )
 
+;; Python
+(setq python-shell-interpreter "ipython")
+
 ;; Paren stuff
 ;; May need to be replaced with paredit?
 ;(electric-pair-mode 1)
