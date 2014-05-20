@@ -47,7 +47,7 @@
 	     '("local" . "/home/stefan/dotfiles/emacs/packages/") t)
 
 (package-initialize)
-(package-refresh-contents)
+;(package-refresh-contents)
 
 ;; Add the path from the shell
 (ensure-installed-package 'exec-path-from-shell
@@ -99,6 +99,9 @@
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
+
+;; Stop the noise
+(setq ring-bell-function 'ignore)
 
 ;; Inconsolata font
 ;; TODO: Set fallback fonts?
