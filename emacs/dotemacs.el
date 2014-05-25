@@ -183,6 +183,13 @@
         	  (kbd "<tab>") 'helm-esh-pcomplete)))
 )
 
+;; Git-gutter-fring
+(ensure-installed-package 'git-gutter-fringe
+    (require 'git-gutter-fringe)
+    (global-git-gutter-mode)
+    (setq git-gutter-fr:side 'right-fringe))
+
+
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
 
