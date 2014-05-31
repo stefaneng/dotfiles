@@ -49,6 +49,24 @@
 (package-initialize)
 ;(package-refresh-contents)
 
+;; el-get
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+
+(setq my-packages
+      '(el-get
+	ghc-mod))
+
+(el-get 'sync my-packages)
+
 ;; Add the path from the shell
 (ensure-installed-package 'exec-path-from-shell
   (exec-path-from-shell-initialize)
@@ -78,10 +96,10 @@
 	    #'(lambda ()
 		global-flycheck-mode)))
 
-(ensure-installed-package 'skewer-mode
-  (add-hook 'js2-mode-hook 'skewer-mode)
-  (add-hook 'css-mode-hook 'skewer-css-mode)
-  (add-hook 'html-mode-hook 'skewer-html-mode))
+;; (ensure-installed-package 'skewer-mode
+;;   (add-hook 'js2-mode-hook 'skewer-mode)
+;;   (add-hook 'css-mode-hook 'skewer-css-mode)
+;;   (add-hook 'html-mode-hook 'skewer-html-mode))
 
 ;; js2-mode
 (ensure-installed-package 'js2-mode
@@ -92,10 +110,10 @@
 )
 
 ;; web-mode
-;; (ensure-installed-package 'web-mode
-;;   (require 'web-mode)
-;;   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-;; )
+(ensure-installed-package 'web-mode
+  (require 'web-mode)
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+)
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
@@ -186,8 +204,7 @@
 ;; Git-gutter-fring
 (ensure-installed-package 'git-gutter-fringe
     (require 'git-gutter-fringe)
-    (global-git-gutter-mode)
-    (setq git-gutter-fr:side 'right-fringe))
+    (global-git-gutter-mode))
 
 
 ;; Tabs are evil
@@ -228,8 +245,17 @@
 
 ;; Haskell mode
 (ensure-installed-package 'haskell-mode
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+  (add-hook 'haskell-mode-hook
+            #'(lambda ()
+		(flycheck-mode -1)
+		(autoload 'ghc-init "ghc" nil t)
+		(autoload 'ghc-debug "ghc" nil t)
+		(ghc-init)
+                (turn-on-haskell-indent)
+                (turn-on-haskell-doc-mode)
+;                (flycheck-select-checker 'haskell-hlint)
+		))
+
 )
 
 ;; C Stuff
