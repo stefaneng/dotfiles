@@ -61,9 +61,12 @@
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
+(setq el-get-user-package-directory "~/.emacs.d/el-get-init-files")
+
 (setq my-packages
       '(el-get
-	ghc-mod))
+	ghc-mod
+	simple-httpd))
 
 (el-get 'sync my-packages)
 
