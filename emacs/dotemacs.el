@@ -67,7 +67,8 @@
       '(el-get
 	ghc-mod
 	simple-httpd
-	flycheck))
+	flycheck
+	js2-mode))
 
 (el-get 'sync my-packages)
 
@@ -93,19 +94,6 @@
 (add-hook 'before-save-hook
 	  #'(lambda ()
 	      (delete-trailing-whitespace)))
-
-;; (ensure-installed-package 'skewer-mode
-;;   (add-hook 'js2-mode-hook 'skewer-mode)
-;;   (add-hook 'css-mode-hook 'skewer-css-mode)
-;;   (add-hook 'html-mode-hook 'skewer-html-mode))
-
-;; js2-mode
-(ensure-installed-package 'js2-mode
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  ;(add-hook 'js2-mode-hook 'ac-js2-mode)
-  ;;(add-to-list 'ac-js2-external-libraries "path/to/lib/library.js")
-  ;;(add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-)
 
 ;; web-mode
 (ensure-installed-package 'web-mode
