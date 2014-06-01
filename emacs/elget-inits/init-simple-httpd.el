@@ -14,6 +14,6 @@
   (httpd-start)
   (browse-url (s-concat
 	       "http://"
-	       "localhost"
+	       (or httpd-host "localhost")
 	       ":"
-	       "8080")))
+	       (number-to-string httpd-port))))
