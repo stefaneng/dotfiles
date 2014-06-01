@@ -72,7 +72,8 @@
 	exec-path-from-shell
 	web-mode
 	markdown-mode
-	git-gutter-fringe))
+	git-gutter-fringe
+	ess))
 
 (el-get 'sync my-packages)
 
@@ -131,10 +132,6 @@
   (global-set-key (kbd "C-x g")
 		  'magit-status)
 )
-
-;; Flycheck
-(ensure-installed-package 'flycheck
-  (add-hook 'after-init-hook #'global-flycheck-mode))
 
 ;; Python
 (setq python-shell-interpreter "ipython")
@@ -229,10 +226,6 @@
 
   (setq TeX-PDF-mode t)
 )
-
-;; Ess
-(ensure-installed-package 'ess
-  (require 'ess-site))
 
 ;; No graphical popups... it freezes osx
 (setq use-dialog-box nil)
