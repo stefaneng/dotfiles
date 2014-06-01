@@ -66,7 +66,8 @@
 (setq my-packages
       '(el-get
 	ghc-mod
-	simple-httpd))
+	simple-httpd
+	flycheck))
 
 (el-get 'sync my-packages)
 
@@ -92,12 +93,6 @@
 (add-hook 'before-save-hook
 	  #'(lambda ()
 	      (delete-trailing-whitespace)))
-
-;; Fly chicks? naw flycheck
-(ensure-installed-package 'flycheck
-  (add-hook 'after-init-hook
-	    #'(lambda ()
-		global-flycheck-mode)))
 
 ;; (ensure-installed-package 'skewer-mode
 ;;   (add-hook 'js2-mode-hook 'skewer-mode)
