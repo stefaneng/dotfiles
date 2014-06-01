@@ -70,7 +70,8 @@
 	flycheck
 	js2-mode
 	exec-path-from-shell
-	web-mode))
+	web-mode
+	markdown-mode))
 
 (el-get 'sync my-packages)
 
@@ -123,20 +124,6 @@
 	    (local-set-key (kbd "<f11>") 'prolog-mode)))
 ;; Don't need idl shit, prolog yoooooooo
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . prolog-mode))
-
-;; Markdown mode
-(ensure-installed-package 'markdown-mode
-  ;;(autoload 'markdown-mode "markdown-mode"
-  ;;   "Major mode for editing Markdown files" t)
-  (require 'markdown-mode)
-  ;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-  ;; Github style markdown for readme's
-  (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-  ;; Change to whatever markdown parser you like
-  (setq markdown-command "markdown_py")
-)
 
 ;; Magit
 (ensure-installed-package 'magit
