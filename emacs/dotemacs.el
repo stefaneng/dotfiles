@@ -69,7 +69,8 @@
 	simple-httpd
 	flycheck
 	js2-mode
-	exec-path-from-shell))
+	exec-path-from-shell
+	web-mode))
 
 (el-get 'sync my-packages)
 
@@ -90,12 +91,6 @@
 (add-hook 'before-save-hook
 	  #'(lambda ()
 	      (delete-trailing-whitespace)))
-
-;; web-mode
-(ensure-installed-package 'web-mode
-  (require 'web-mode)
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-)
 
 ;; Hide startup screen
 (setq inhibit-startup-message t)
