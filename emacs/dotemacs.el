@@ -68,14 +68,10 @@
 	ghc-mod
 	simple-httpd
 	flycheck
-	js2-mode))
+	js2-mode
+	exec-path-from-shell))
 
 (el-get 'sync my-packages)
-
-;; Add the path from the shell
-(ensure-installed-package 'exec-path-from-shell
-  (exec-path-from-shell-initialize)
-)
 
 ;; Start eshell on startup
 (add-hook 'emacs-startup-hook
