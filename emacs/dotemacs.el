@@ -71,7 +71,8 @@
 	js2-mode
 	exec-path-from-shell
 	web-mode
-	markdown-mode))
+	markdown-mode
+	git-gutter-fringe))
 
 (el-get 'sync my-packages)
 
@@ -164,12 +165,6 @@
 		(define-key eshell-mode-map
         	  (kbd "<tab>") 'helm-esh-pcomplete)))
 )
-
-;; Git-gutter-fring
-(ensure-installed-package 'git-gutter-fringe
-    (require 'git-gutter-fringe)
-    (global-git-gutter-mode))
-
 
 ;; Tabs are evil
 (setq indent-tabs-mode nil)
