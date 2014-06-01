@@ -8,3 +8,14 @@
   (interactive "DServe directory: ")
   (set 'httpd-root dir)
   (httpd-start))
+
+(defun httpd-serve-dir-and-open (dir)
+  "Serves directory DIR and opens in browser."
+  (interactive "DServe directory: ")
+  (set 'httpd-root dir)
+  (httpd-start)
+  (browse-url (s-concat
+	       "http://"
+	       (or httpd-host "localhost")
+	       ":"
+	       (number-to-string httpd-port))))
