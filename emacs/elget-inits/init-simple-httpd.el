@@ -12,7 +12,7 @@
   (interactive "DServe directory: ")
   (set 'httpd-root dir)
   (httpd-start)
-  (browse-url (s-concat
+  (browse-url (concat
 	       "http://"
 	       (or httpd-host "localhost")
 	       ":"
