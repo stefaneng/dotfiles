@@ -142,6 +142,13 @@
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
 
+(defun paredit-nonlisp ()
+  "Turn on paredit mode for non-lisps."
+  (interactive)
+  (set (make-local-variable 'paredit-space-for-delimiter-predicates)
+       '((lambda (endp delimiter) nil)))
+  (paredit-mode 1))
+
 ;; Emacs Lisp
 (dolist (hook
 	 '(emacs-lisp-mode-hook
