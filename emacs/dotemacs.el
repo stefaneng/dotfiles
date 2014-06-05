@@ -137,12 +137,6 @@
 ;; Python
 (setq python-shell-interpreter "ipython")
 
-;; Paren stuff
-;; May need to be replaced with paredit?
-;(electric-pair-mode 1)
-(show-paren-mode 1)
-(setq show-paren-style 'expression)
-
 ;; Emacs Lisp
 (dolist (hook
 	 '(emacs-lisp-mode-hook
