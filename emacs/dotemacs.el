@@ -73,7 +73,8 @@
 	web-mode
 	markdown-mode
 	git-gutter-fringe
-	ess))
+	ess
+	smartparens))
 
 (el-get 'sync my-packages)
 
@@ -141,13 +142,6 @@
 ;(electric-pair-mode 1)
 (show-paren-mode 1)
 (setq show-paren-style 'expression)
-
-(defun paredit-nonlisp ()
-  "Turn on paredit mode for non-lisps."
-  (interactive)
-  (set (make-local-variable 'paredit-space-for-delimiter-predicates)
-       '((lambda (endp delimiter) nil)))
-  (paredit-mode 1))
 
 ;; Emacs Lisp
 (dolist (hook

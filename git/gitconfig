@@ -3,3 +3,5 @@
 	email = (none)
 [push]
 	default = simple
+[core]
+	excludesfile = /Users/seeng/.gitexcludes
