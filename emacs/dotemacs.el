@@ -75,7 +75,7 @@
 	git-gutter-fringe
 	ess
 	smartparens
-	smart-tab))
+	auto-complete))
 
 (el-get 'sync my-packages)
 
