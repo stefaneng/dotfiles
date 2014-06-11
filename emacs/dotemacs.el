@@ -74,7 +74,8 @@
 	markdown-mode
 	git-gutter-fringe
 	ess
-	smartparens))
+	smartparens
+	smart-tab))
 
 (el-get 'sync my-packages)
 
