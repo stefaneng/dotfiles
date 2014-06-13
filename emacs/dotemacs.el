@@ -75,7 +75,8 @@
 	git-gutter-fringe
 	ess
 	smartparens
-	auto-complete))
+	auto-complete
+	ac-ghc-mod))
 
 (el-get 'sync my-packages)
 
