@@ -76,7 +76,8 @@
 	ess
 	smartparens
 	auto-complete
-	ac-ghc-mod))
+	ac-ghc-mod
+	coffee-mode))
 
 (el-get 'sync my-packages)
 
