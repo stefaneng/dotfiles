@@ -5,3 +5,5 @@
 	default = simple
 [core]
 	excludesfile = /Users/seeng/.gitexcludes
+[alias]
+	lol = log --graph --all --decorate --oneline
