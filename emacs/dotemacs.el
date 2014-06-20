@@ -124,6 +124,10 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; Unique buffer names by adding directory name
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+
 ;; Add F11 for changing from perl to prolog
 (add-hook 'perl-mode-hook
 	  (lambda ()
