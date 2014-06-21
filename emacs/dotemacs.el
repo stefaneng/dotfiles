@@ -77,7 +77,8 @@
 	smartparens
 	auto-complete
 	ac-ghc-mod
-	coffee-mode))
+	coffee-mode
+	magit))
 
 (el-get 'sync my-packages)
 
@@ -134,12 +135,6 @@
 	    (local-set-key (kbd "<f11>") 'prolog-mode)))
 ;; Don't need idl shit, prolog yoooooooo
 (add-to-list 'auto-mode-alist '("\\.pro\\'" . prolog-mode))
-
-;; Magit
-(ensure-installed-package 'magit
-  (global-set-key (kbd "C-x g")
-		  'magit-status)
-)
 
 ;; Python
 (setq python-shell-interpreter "ipython")
