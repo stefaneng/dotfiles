@@ -217,6 +217,9 @@
 	  #'(lambda ()
 	      (local-set-key (kbd "<f11>") 'c-man)))
 
+;; Flyspell
+(add-hook 'text-mode-hook 'turn-on-flyspell)
+
 ;; LaTeX
 (ensure-installed-package 'auctex
   (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
