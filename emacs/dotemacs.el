@@ -199,10 +199,10 @@
 ;; Haskell mode
 (ensure-installed-package 'haskell-mode
   (add-hook 'haskell-mode-hook
-            #'(lambda ()
+            (lambda ()
 		(flycheck-mode -1)
-		(autoload 'ghc-init "ghc" nil t)
-		(autoload 'ghc-debug "ghc" nil t)
+		;(autoload 'ghc-init "ghc" nil t)
+		;(autoload 'ghc-debug "ghc" nil t)
 		(ghc-init)
                 (turn-on-haskell-indent)
                 (turn-on-haskell-doc-mode)
