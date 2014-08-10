@@ -8,7 +8,7 @@
 -- used to indicate layout for nested sections.
 
 
--- require-sandbox: False
+require-sandbox: True
 -- ignore-sandbox: False
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
 remote-repo-cache: /Users/seeng/.cabal/packages
@@ -47,7 +47,7 @@ extra-prog-path: /Users/seeng/.cabal/bin
 -- preference:
 -- solver: choose
 -- allow-newer: False
--- documentation: False
+documentation: True
 -- doc-index-file: $datadir/doc/index.html
 -- max-backjumps: 2000
 -- reorder-goals: False
