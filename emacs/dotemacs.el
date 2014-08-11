@@ -205,7 +205,7 @@
 		;(autoload 'ghc-debug "ghc" nil t)
 		(ghc-init)
                 (turn-on-haskell-indent)
-                (turn-on-haskell-doc-mode)
+;                (turn-on-haskell-doc-mode)
 ;                (flycheck-select-checker 'haskell-hlint)
 		))
 
