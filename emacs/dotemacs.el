@@ -78,7 +78,8 @@
 	auto-complete
 	ac-ghc-mod
 	coffee-mode
-	magit))
+	magit
+	org-mode))
 
 (el-get 'sync my-packages)
 
