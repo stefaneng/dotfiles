@@ -52,5 +52,16 @@
   ((length (number-to-string)) + 1)
   )
 
+(defun my/shell-here ()
+  "From a buffer run and it will split your window and cd to the buffer's directory"
+  (interactive)
+    (let ((cur default-directory))
+      (split-window-sensibly)
+      (other-window 1)
+      (eshell)
+      (eshell/cd cur)
+      (insert "")
+      (eshell-send-input)))
+
 (provide 'stefan)
 ;;; stefan.el ends here
