@@ -34,3 +34,7 @@
     (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
 (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
+
+;; Use CDLaTeX as minor mode to insert environments and math templates
+;; http://orgmode.org/org.html#CDLaTeX-mode
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
