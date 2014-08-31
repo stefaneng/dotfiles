@@ -79,7 +79,8 @@
 	ac-ghc-mod
 	coffee-mode
 	magit
-	org-mode))
+	org-mode
+	cdlatex-mode))
 
 (el-get 'sync my-packages)
 
