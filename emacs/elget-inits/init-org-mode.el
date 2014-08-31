@@ -7,11 +7,19 @@
 ;; Keep track of when a certain TODO was finished
 (setq org-log-done 'time)
 
-;; Set agenda files
-(setq org-agenda-files '())
-(add-to-list 'org-agenda-files (expand-file-name "~/org"))
-(add-to-list 'org-agenda-files (expand-file-name "~/school"))
+;; See http://orgmode.org/worg/org-faq.html#set-agenda-files-recursively
+(defun find-org-files (dir)
+  "Returns a list of all org files in directory DIR"
+  ;; Uses the find-lisp function
+  (load-library "find-lisp")
+  (find-lisp-find-files (expand-file-name dir) "\.org$"))
 
+;; Add all of the org files found (recursively) to the agenda-files
+(setq org-agenda-files
+      (apply 'append
+	     (mapcar 'find-org-files
+		     ;; List of org mode file locations
+		     (list "~/org" "~/school"))))
 
 ;; Default notes file
 (setq org-default-notes-file "~/org/notes.org")
