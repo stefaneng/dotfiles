@@ -7,3 +7,15 @@
 	excludesfile = /Users/seeng/.gitexcludes
 [alias]
 	lol = log --graph --all --decorate --oneline
+	work = config user.email \"Stefan.E.Eng@jpl.nasa.gov\"
+	me = config user.email \"stefaneng13@gmail.com\"
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[hub]
+	host = github.jpl.nasa.gov

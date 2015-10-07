@@ -38,3 +38,6 @@
 ;; Use CDLaTeX as minor mode to insert environments and math templates
 ;; http://orgmode.org/org.html#CDLaTeX-mode
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+;; Set TODO Keywords as workflow states
+(setq org-todo-keywords '((sequence "TODO" "|" "DONE" "POSTPONDED")))
