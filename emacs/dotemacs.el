@@ -1,11 +1,9 @@
-;;(menu-bar-mode -1)
-
 (setq package-list
       '(material-theme magit))
 
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
-	("marmalade" . "https://marmalade-repo.org/packages/")
+        ("marmalade" . "https://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.org/packages/")))
 
 (package-initialize)
@@ -17,7 +15,7 @@
 (require 'use-package)
 
 
-; fetch the list of packages available 
+; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
@@ -36,11 +34,51 @@
   :ensure t
   :config (global-company-mode))
 
-(set-face-attribute 'default nil
-                    :family "Consolas"
-                    :height 150
-                    :weight 'normal
-                    :width 'normal)
+;; Osx specific stuff
+(if (eq system-type 'darwin)
+    (progn
+      (use-package osx-dictionary
+        :ensure t
+        :bind ("C-c d" . osx-dictionary-search-pointer))
+      ;; Font
+      (set-face-attribute 'default nil
+                          :family "Consolas"
+                          :height 150
+                          :weight 'normal
+                          :width 'normal)
+      )
+)
+
+;; Helm mode
+;; Config based on http://pages.sachachua.com/.emacs.d/Sacha.html
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    ;; From https://gist.github.com/antifuchs/9238468
+    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+          helm-input-idle-delay 0.01  ; this actually updates things
+                                        ; reeeelatively quickly.
+;          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-M-x-requires-pattern nil
+          helm-ff-skip-boring-files t)
+    (helm-mode))
+  :bind (("C-c h" . helm-mini)
+         ("C-h a" . helm-apropos)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x b" . helm-buffers-list)
+         ("M-y" . helm-show-kill-ring)
+         ("M-x" . helm-M-x)
+         ("C-x c o" . helm-occur)
+;         ("C-x c s" . helm-swoop)
+;         ("C-x c y" . helm-yas-complete)
+;         ("C-x c Y" . helm-yas-create-snippet-on-region)
+;         ("C-x c b" . my/helm-do-grep-book-notes)
+         ("C-x c SPC" . helm-all-mark-rings)))
 
 (global-linum-mode 1)
 ;; Keep line numbers small
@@ -53,7 +91,10 @@
 (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t)
 (setq-default indent-tabs-mode nil)
+(blink-cursor-mode 0)
+(fset 'yes-or-no-p 'y-or-n-p)
 
+;; Custom keymaps
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Keep a backup directory
@@ -62,3 +103,5 @@
 (setq version-control t)
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+
+(add-hook 'before-save-hook 'whitespace-cleanup)
