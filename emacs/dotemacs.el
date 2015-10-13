@@ -31,6 +31,11 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+;; Company Mode
+(use-package company
+  :ensure t
+  :config (global-company-mode))
+
 (set-face-attribute 'default nil
                     :family "Consolas"
                     :height 150
