@@ -10,17 +10,26 @@
 
 (package-initialize)
 
+;; Use-package to ensure packages are installed
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(require 'use-package)
+
+
 ; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
 ;; Theme
-(load-theme 'material t)
+(use-package material-theme
+  :ensure t
+  :init (load-theme 'material t))
+
+;; Magit
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
 
 (set-face-attribute 'default nil
                     :family "Consolas"
@@ -42,13 +51,9 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-(setq auto-save-default nil)
-(setq make-backup-files nil)
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; Magit status
-(global-set-key (kbd "C-x g")
-		'magit-status)
+;; Keep a backup directory
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions -1)
+(setq version-control t)
+(setq vc-make-backup-files t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
