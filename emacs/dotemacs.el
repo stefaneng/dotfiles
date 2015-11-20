@@ -29,10 +29,47 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+(use-package haskell-mode
+  :ensure t
+  :bind ("C-c C-l" . haskell-process-load-or-reload)
+  :init (progn
+          (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+          (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+          (setq haskell-process-type 'stack-ghci)
+          (setq haskell-process-path-ghci "stack")
+          (setq haskell-process-args-ghci "ghci")
+          ))
+
 ;; Company Mode
 (use-package company
   :ensure t
   :config (global-company-mode))
+
+;; Ghci
+(use-package company-ghci
+  :ensure t
+  :init (progn
+          (require 'company-ghci)
+          (push 'company-ghci company-backends)
+          (add-hook 'haskell-mode-hook 'company-mode)))
+
+;; js2-mode
+(use-package js2-mode
+  :ensure t
+  :config (progn
+            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+            (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+            (setq js2-basic-offset 2)))
+
+;; Web-mode
+(use-package web-mode
+  :ensure t
+  :config (progn
+            (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))))
+
+(use-package ess
+  :ensure t)
 
 ;; Osx specific stuff
 (if (eq system-type 'darwin)
@@ -104,4 +141,21 @@
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
+;; Newline at end of file
+(setq require-final-newline t)
+(setq next-line-add-newlines nil)
+
 (add-hook 'before-save-hook 'whitespace-cleanup)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(css-indent-offset 2)
+ '(js-indent-level 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
