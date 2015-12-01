@@ -12,6 +12,8 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (setq use-package-verbose t)
+
+(package-install 'use-package)
 (require 'use-package)
 
 
@@ -141,6 +143,9 @@
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
+;; Whitespace mode
+(global-whitespace-mode 1)
+
 ;; Newline at end of file
 (setq require-final-newline t)
 (setq next-line-add-newlines nil)
@@ -152,7 +157,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(css-indent-offset 2)
- '(js-indent-level 2))
+ '(js-indent-level 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
