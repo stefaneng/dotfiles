@@ -71,7 +71,8 @@
             (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))))
 
 (use-package ess
-  :ensure t)
+  :ensure t
+  :config (require 'ess-site))
 
 ;; Osx specific stuff
 (if (eq system-type 'darwin)
