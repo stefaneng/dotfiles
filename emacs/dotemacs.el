@@ -31,6 +31,10 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+;; Markdown mode
+(use-package markdown-mode
+  :ensure t)
+
 (use-package haskell-mode
   :ensure t
   :bind ("C-c C-l" . haskell-process-load-or-reload)
@@ -145,6 +149,7 @@
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
 ;; Whitespace mode
+(setq whitespace-global-modes '(not markdown-mode))
 (global-whitespace-mode 1)
 
 ;; Newline at end of file
