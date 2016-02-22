@@ -16,7 +16,6 @@
 (package-install 'use-package)
 (require 'use-package)
 
-
 ; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
@@ -50,6 +49,9 @@
 (use-package company
   :ensure t
   :config (global-company-mode))
+
+(use-package coffee-mode
+  :ensure t)
 
 ;; Ghci
 (use-package company-ghci
