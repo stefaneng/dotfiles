@@ -51,7 +51,8 @@
   :config (global-company-mode))
 
 (use-package coffee-mode
-  :ensure t)
+  :ensure t
+  :config (setq coffee-tab-width 2))
 
 ;; Ghci
 (use-package company-ghci
