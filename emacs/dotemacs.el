@@ -34,6 +34,14 @@
 (use-package markdown-mode
   :ensure t)
 
+;; Language stuff
+;; Use TeX mode input
+;; Allow for di\'as to be rendered as días
+;; Type ? followed by ` to print ¿
+(add-hook 'text-mode-hook
+          (lambda ()
+            (set-input-method "TeX")))
+
 (use-package haskell-mode
   :ensure t
   :bind ("C-c C-l" . haskell-process-load-or-reload)
