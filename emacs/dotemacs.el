@@ -89,6 +89,10 @@
   :ensure t
   :config (require 'ess-site))
 
+(use-package scala-mode2
+  :ensure t
+  :config (require 'scala-mode2))
+
 ;; Osx specific stuff
 (if (eq system-type 'darwin)
     (progn
